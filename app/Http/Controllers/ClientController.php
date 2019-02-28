@@ -35,7 +35,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //$this->_validade($request);
+        //$this->_validade($request);        
         $clients = new \App\Client;
         $clients->name=$request->get('name');
         $clients->date_birth=$request->get('date_birth');

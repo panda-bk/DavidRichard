@@ -9,12 +9,12 @@
             {!! Form::date('date_birth', null, ['class' => 'form-control','required']) !!}
         </div>
         <div class="form-group col-sm-6">
-            {!! Form::label('sex', 'Sexo', array('class' => 'control-label' )) !!} 
-            {!! Form::text('sex', null, ['class' => 'form-control','required']) !!}
+            {!! Form::label('sex', 'Sexo', array('class' => 'control-label' )) !!}
+            {!! Form::select('sex', ['' => '','masculino' => 'Masculino', 'feminino' => 'Feminino','outros' => 'Outros'], null, ['class' => 'form-control','required'])!!}
         </div>
         <div class="form-group col-sm-6">
             {!! Form::label('cep', 'CEP', array('class' => 'control-label' )) !!} 
-            {!! Form::text('cep', null, ['class' => 'form-control']) !!}
+            {!! Form::text('cep', null, ['class' => 'form-control', 'id' => 'cepvalidate']) !!}
         </div>
         <div class="form-group col-sm-10">
             {!! Form::label('address', 'Endereço', array('class' => 'control-label' )) !!} 
@@ -44,3 +44,28 @@
             <button type="submit" class="btn btn-success">Salvar</button>
         </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+var cepvalidate = $("#cepvalidate").val();
+$("#cepvalidate").focusout( function(){
+var cep = $(this).val();   
+    $.ajax({   
+        type: 'GET',
+        url: 'https://viacep.com.br/ws/' + cep + '/json',
+        success: function (data) {
+            $("#address").val(data.logradouro);
+            $("#complement").val(data.complemento);
+            $("#district").val(data.bairro);
+            $("#city").val(data.localidade)
+            $("#state").val(data.uf)
+            if(data.cep != null){
+                console.log(data.cep + ' '+'valido');
+            }else if(data.erro == true){
+                alert('Invalido');
+            }
+        }
+    });
+});
+    </script>
