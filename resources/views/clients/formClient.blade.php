@@ -1,4 +1,3 @@
-@extends('home')
 <div class="row">
         <div class="form-group col-sm-6">
             {!! Form::label('name', 'Nome', array('class' => 'control-label' )) !!} 
@@ -14,7 +13,7 @@
         </div>
         <div class="form-group col-sm-6">
             {!! Form::label('cep', 'CEP', array('class' => 'control-label' )) !!} 
-            {!! Form::text('cep', null, ['class' => 'form-control', 'id' => 'cepvalidate']) !!}
+            {!! Form::number('cep', null, ['class' => 'form-control', 'id' => 'cepvalidate']) !!}
         </div>
         <div class="form-group col-sm-10">
             {!! Form::label('address', 'Endereço', array('class' => 'control-label' )) !!} 

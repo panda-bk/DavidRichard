@@ -1,3 +1,11 @@
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-@yield('conteudo')
+@extends('adminlte::page')
+
+@section('title', 'David Richard')
+
+@section('content')
+<h3>Home</h3>
+
+@stop
+@section('content')
+@stop

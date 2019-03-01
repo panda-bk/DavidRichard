@@ -1,6 +1,10 @@
 
-@extends('home')
+@extends('adminlte::page')
 
+@section('title', 'David Richard')
+
+@section('content')
+<div class="row">
 <a href="client/create">Cadastro</a>
 <table class="table table-striped">
     <thead>
@@ -14,7 +18,6 @@
     </thead>
     </tr>
     @foreach($clients as $client)
-      
     <tr>
         <th>{{$client['id']}}</th>
         <th>{{$client['name']}}</th>
@@ -31,3 +34,7 @@
         @endforeach 
     </td>
     </tr>
+    </div>
+@stop
+@section('content')
+@stop

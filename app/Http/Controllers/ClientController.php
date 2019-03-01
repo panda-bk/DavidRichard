@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\ClientRepository;
 
 class ClientController extends Controller
 {
+    private $clients;
+    public function __construct(ClientRepository $clients){        
+        $this->clients = $clients;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +18,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = \App\Client::all();
+        $clients = $this->clients->all();
         return view('clients.clientList', compact('clients'));
     }
 
@@ -35,19 +40,8 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //$this->_validade($request);        
-        $clients = new \App\Client;
-        $clients->name=$request->get('name');
-        $clients->date_birth=$request->get('date_birth');
-        $clients->sex=$request->get('sex');
-        $clients->cep=$request->get('cep');
-        $clients->address=$request->get('address');
-        $clients->number=$request->get('number');
-        $clients->complement=$request->get('complement');
-        $clients->district=$request->get('district');
-        $clients->state=$request->get('state');
-        $clients->city=$request->get('city');
-        $clients->save();
+        $clients = $this->clients->store($request);
+        //$this->_validade($request);       
         return redirect('/client');
     }
 
@@ -70,7 +64,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        $clients= \App\Client::find($id);
+        $clients= $this->clients->find($id);
         return view('clients.editClient', compact('clients','id'));
     }
 
@@ -82,19 +76,7 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $clients= \App\Client::find($id);
-        $clients->name=$request->get('name');
-        $clients->date_birth=$request->get('date_birth');
-        $clients->sex=$request->get('sex');
-        $clients->cep=$request->get('cep');
-        $clients->address=$request->get('address');
-        $clients->number=$request->get('number');
-        $clients->complement=$request->get('complement');
-        $clients->district=$request->get('district');
-        $clients->state=$request->get('state');
-        $clients->city=$request->get('city');
-        $clients->save();
+    {   $clients = $this->clients->update($request, $id);
         return redirect('/client');
     }
 
@@ -106,8 +88,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $clients= \App\Client::find($id);
-        $clients->delete();
+        $clients = $this->clients->destroy($id);
         return redirect('/client');
     }
 }
