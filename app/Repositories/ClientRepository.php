@@ -1,5 +1,6 @@
 <?php 
 namespace App\Repositories;
+
 use App\Client;
 
 class ClientRepository implements ClientInterface {
@@ -13,7 +14,7 @@ class ClientRepository implements ClientInterface {
     }
     public function store($request)
     {
-        $clients = new \App\Client;
+        $clients = new Client;
         $clients->name=$request->get('name');
         $clients->date_birth=$request->get('date_birth');
         $clients->sex=$request->get('sex');

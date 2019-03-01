@@ -40,8 +40,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $clients = $this->clients->store($request);
-        //$this->_validade($request);       
+        $clients = $this->clients->store($request);      
         return redirect('/client');
     }
 
@@ -76,7 +75,8 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   $clients = $this->clients->update($request, $id);
+    {   
+        $clients = $this->clients->update($request, $id);
         return redirect('/client');
     }
 
